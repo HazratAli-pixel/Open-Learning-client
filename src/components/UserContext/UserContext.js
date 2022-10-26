@@ -19,9 +19,11 @@ const UserContext = ({children}) => {
 
 
     const createUser = (email, password) =>{
+        setloading(true);
         return createUserWithEmailAndPassword(auth, email, password)
     }
     const signIn = (email, password) =>{
+        setloading(true);
         return signInWithEmailAndPassword(auth, email, password)
     }
 

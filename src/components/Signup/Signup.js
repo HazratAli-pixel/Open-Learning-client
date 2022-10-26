@@ -1,11 +1,14 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../UserContext/UserContext';
 
 const Signup = () => {
 
     const {createUser, updateProfileInfo}= useContext(AuthContext)
-
+    const [error, setError] = useState('')
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
     const handleregistration = (event) =>{
         event.preventDefault();
@@ -17,13 +20,17 @@ const Signup = () => {
         createUser(email, password)
         .then(result =>{
             form.reset();
+            setError('');
             const info = { displayName: name, photoURL: url};
+            navigate(from, {replace:true})
+            console.log("check 1");
             updateProfileInfo(info)
-            .then(result => console.log(result.user))
+            .then(result => {console.log("check 2", result)})
             .catch(error => console.error(error))
+            console.log("check 3");
         })
         .catch(error => {
-            console.error(error);
+            setError(error.message);
         })
     }
     return (
@@ -66,6 +73,8 @@ const Signup = () => {
                         </div>
                         <br />
                         <hr />
+                        <br />
+                        <p>{error}</p>
                         <br />
                         <button type='submit' className='btn btn-primary w-full'>Register</button>
                         <p className='py-4 text-white'>Allready have an account? <Link to='/signin'>Login</Link></p>

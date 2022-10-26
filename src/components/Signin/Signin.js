@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { AiFillGoogleCircle } from 'react-icons/ai';
 import { FaFacebook, FaGithub } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../UserContext/UserContext';
 
 const Signin = () => {
@@ -14,6 +15,7 @@ const Signin = () => {
         signinWithGoogle()
         .then(result=>{
             setError('');
+            toast("Successfuly Loged in")
             navigate(from, {replace: true})
         })
         .then(error => setError(error.message))
@@ -24,6 +26,7 @@ const Signin = () => {
         .then(result=>
             {
                 setError('');
+                toast("Successfuly Loged in")
                 navigate(from, {replace: true})
             })
         .then(error => setError(error.message))
@@ -32,6 +35,7 @@ const Signin = () => {
         signinWithGithub()
         .then(result=>{
             setError('');
+            toast("Successfuly Loged in")
             navigate(from, {replace: true})
         })
         .then(error => setError(error.message))
@@ -47,6 +51,7 @@ const Signin = () => {
         .then(result =>{
             form.reset();
             setError('')
+            toast("Successfuly Loged in")
             navigate(from, {replace: true})
         })
         .catch(error => {
@@ -81,6 +86,7 @@ const Signin = () => {
                         <hr />
                         <br />
                         <p>{error}</p>
+                        <br />
                         <button type='submit' className='btn btn-primary w-full'>Log in</button>
                         <p className='py-4 text-white'>Don't have an account? <Link to='/signup'>Sign up</Link></p>
                     </div>
