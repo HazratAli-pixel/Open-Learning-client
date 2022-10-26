@@ -17,10 +17,9 @@ const Signup = () => {
         createUser(email, password)
         .then(result =>{
             form.reset();
-            console.log("RegUser : ",result.user);
             const info = { displayName: name, photoURL: url};
             updateProfileInfo(info)
-            .then(upresult => console.log(upresult.user))
+            .then(result => console.log(result.user))
             .catch(error => console.error(error))
         })
         .catch(error => {

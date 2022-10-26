@@ -1,18 +1,20 @@
 import React, { useContext } from 'react';
+import { AiOutlineLogout } from 'react-icons/ai';
 import { CiDark } from 'react-icons/ci';
 import { MdLightMode } from 'react-icons/md';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink,useNavigate } from 'react-router-dom';
 import { AuthContext } from '../UserContext/UserContext';
 import './Header.css';
 
 const Header = () => {
     const {modechange, modeToogle, user, logout} = useContext(AuthContext);
-
+    const navigate = useNavigate();
     const themechange = ()=>{
       modechange();
     }
     const userlogout = ()=>{
       logout();
+      navigate('/')
     }
 
     return (
@@ -38,10 +40,9 @@ const Header = () => {
                   </li>
                   {
                     user? <div className='pl-2'>
-                    <img id='userPhoto' src={user.photoURL} className='border-2 border-green-400 rounded-full hover:' alt="" style={{width: "45px", height:"45px"}} srcset="" />
+                    <Link id='userPhoto' to='/profile'><img id='' src={user.photoURL} className='border-2 border-green-400 rounded-full hover:' alt="" style={{width: "45px", height:"45px"}} srcset="" /></Link>
                     <div className='text-slate-800 bg-lime-300 p-2' id='userinfo'>
                       <p >{user.displayName}</p>
-                      <button onClick={userlogout}>logout</button>
                     </div>
                   </div> : <li><NavLink to='/signin' className={({ isActive }) =>
                     isActive ? 'bg-green-400 text-black' : undefined}>Login</NavLink>
@@ -50,6 +51,7 @@ const Header = () => {
                   
                   <p className='pl-1'><button type='checked' onClick={themechange} className='btn btn-success'> {modeToogle? <MdLightMode/>: <CiDark/>} </button>
                   </p>
+                  <p className='flex'>{user? <button className='p-2' onClick={userlogout}><AiOutlineLogout/></button>:""}</p>
                 </ul>
               </div>
               <div className="dropdown relative">

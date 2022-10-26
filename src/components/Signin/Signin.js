@@ -1,27 +1,41 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AiFillGoogleCircle } from 'react-icons/ai';
 import { FaFacebook, FaGithub } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../UserContext/UserContext';
 
 const Signin = () => {
     const {signinWithGoogle,signinWithGithub,signinWithFacebook, signIn} = useContext(AuthContext);
-    
+    const [error, setError] = useState('')
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
     const googlesignin = () => {
-        console.log('clicked');
         signinWithGoogle()
-        .then(result=>console.log(result.user))
-        .then(error => console.log(error))
+        .then(result=>{
+            setError('');
+            navigate(from, {replace: true})
+        })
+        .then(error => setError(error.message))
+
     }
     const facebooksignin = () => {
         signinWithFacebook()
-        .then(result=>console.log(result.user))
-        .then(error => console.log(error))
+        .then(result=>
+            {
+                setError('');
+                navigate(from, {replace: true})
+            })
+        .then(error => setError(error.message))
     }
     const githubsignin = () => {
         signinWithGithub()
-        .then(result=>console.log(result.user))
-        .then(error => console.log(error))
+        .then(result=>{
+            setError('');
+            navigate(from, {replace: true})
+        })
+        .then(error => setError(error.message))
+        
     }
 
     const handlelogin = (event) =>{
@@ -32,11 +46,11 @@ const Signin = () => {
         signIn(email, password)
         .then(result =>{
             form.reset();
-            console.log(result.user);
-            // <Navigate to= '/'></Navigate>
+            setError('')
+            navigate(from, {replace: true})
         })
         .catch(error => {
-            console.error(error);
+            setError(error.message)
         })
     }
 
@@ -66,6 +80,7 @@ const Signin = () => {
                         <br />
                         <hr />
                         <br />
+                        <p>{error}</p>
                         <button type='submit' className='btn btn-primary w-full'>Log in</button>
                         <p className='py-4 text-white'>Don't have an account? <Link to='/signup'>Sign up</Link></p>
                     </div>

@@ -26,20 +26,25 @@ const UserContext = ({children}) => {
     }
 
     const logout = () => {
+        setloading(true);
         return signOut(auth);
     }
 
     const signinWithGoogle = () => {
+        setloading(true);
         return signInWithPopup (auth, googleprovider)
     }
     const signinWithGithub = () => {
+        setloading(true);
         return signInWithPopup (auth, githubprovider)
     }
     const signinWithFacebook = () => {
+        setloading(true);
         return signInWithPopup (auth, facebookprovider)
     }
 
     const updateProfileInfo = (info) =>{
+        setloading(true);
         updateProfile(auth.currentUser, info)
     }
 
