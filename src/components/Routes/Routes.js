@@ -28,6 +28,18 @@ export const Routes = createBrowserRouter([
                 path:'modal',
                 element:<Modal></Modal>
             },
+            {
+                path:'courses',
+                element:<div>fasfsaf</div>
+            },
+            {
+                path:'faq',
+                element:<div>faq</div>
+            },
+            {
+                path:'blog',
+                element:<div>blog</div>
+            },
         ]
     },
 ]);

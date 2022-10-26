@@ -1,5 +1,5 @@
 
-import { createUserWithEmailAndPassword, FacebookAuthProvider, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, FacebookAuthProvider, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import React, { createContext, useEffect, useState } from 'react';
 import app from '../../config/firebase.config';
 
@@ -14,6 +14,8 @@ const facebookprovider = new FacebookAuthProvider();
 const UserContext = ({children}) => {
     const [user, setUser] = useState({})
     const [loading, setloading] = useState(true);
+    const [modeToogle, setModeToogle] = useState(true);
+    const [theme, setTheme] = useState("dark");
 
 
     const createUser = (email, password) =>{
@@ -37,6 +39,24 @@ const UserContext = ({children}) => {
         return signInWithPopup (auth, facebookprovider)
     }
 
+    const updateProfileInfo = (info) =>{
+        updateProfile(auth.currentUser, info)
+    }
+
+    const modechange = () =>{
+        if(!modeToogle){
+          setTheme('dark');
+          setModeToogle(true)
+          document.body.setAttribute("data-theme", theme);
+        }
+        else{
+          setModeToogle(false)
+          setTheme('light');
+          document.body.setAttribute("data-theme", theme);
+        }
+        console.log(theme);
+    }
+
 
     useEffect( () => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
@@ -50,7 +70,7 @@ const UserContext = ({children}) => {
 
     },[])
     // const authInfo = {user, loading, createUser, signIn, logout, signinWithGoogle}
-    const authInfo = {user, loading, createUser, signIn, logout, signinWithGoogle,signinWithGithub,signinWithFacebook}
+    const authInfo = {user, loading, createUser, signIn, logout, signinWithGoogle,signinWithGithub,signinWithFacebook, updateProfileInfo, modechange, modeToogle}
 
     return (
         <AuthContext.Provider value={authInfo} >

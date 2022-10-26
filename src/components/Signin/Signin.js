@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../UserContext/UserContext';
 
 const Signin = () => {
-    const {signinWithGoogle,signinWithGithub,signinWithFacebook} = useContext(AuthContext);
+    const {signinWithGoogle,signinWithGithub,signinWithFacebook, signIn} = useContext(AuthContext);
     
     const googlesignin = () => {
         console.log('clicked');
@@ -23,10 +23,28 @@ const Signin = () => {
         .then(result=>console.log(result.user))
         .then(error => console.log(error))
     }
+
+    const handlelogin = (event) =>{
+        event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        signIn(email, password)
+        .then(result =>{
+            form.reset();
+            console.log(result.user);
+            // <Navigate to= '/'></Navigate>
+        })
+        .catch(error => {
+            console.error(error);
+        })
+    }
+
+
     return (
-        <div className='flex justify-center flex-col items-center pt-28'>
+        <div className='flex justify-center flex-col items-center' style={{height: "100vh"}}>
             <div className='bg-slate-400 rounded-lg p-4 sm:w-full md:w-1/2 lg:w-1/3 drop-shadow-xl '>
-                <form >
+                <form onSubmit={handlelogin}>
                     <div className=''>
                         <h1 className='text-3xl text-center text-white font-bold'>Log in</h1>
                         <div className="form-control ">
@@ -34,7 +52,7 @@ const Signin = () => {
                                 <span className="label-text font-bold">Your Email</span>
                             </label>
                             <label className="form-control">
-                                <input type="text" placeholder="abc@mail.com" className="input input-bordered" />
+                                <input type="email" name='email' placeholder="abc@mail.com" className="input input-bordered" />
                             </label>
                         </div>
                         <div className="form-control pt-4 ">
@@ -42,7 +60,7 @@ const Signin = () => {
                                 <span className="label-text">Your Password</span>
                             </label>
                             <label className="form-control">
-                                <input type="password" placeholder='*******' className="input input-bordered" />
+                                <input type="password" name='password' placeholder='*******' className="input input-bordered" />
                             </label>
                         </div>
                         <br />
