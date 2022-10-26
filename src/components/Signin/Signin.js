@@ -1,9 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { AiFillGoogleCircle } from 'react-icons/ai';
 import { FaFacebook, FaGithub } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../UserContext/UserContext';
 
 const Signin = () => {
+    const {signinWithGoogle,signinWithGithub,signinWithFacebook} = useContext(AuthContext);
+    
+    const googlesignin = () => {
+        console.log('clicked');
+        signinWithGoogle()
+        .then(result=>console.log(result.user))
+        .then(error => console.log(error))
+    }
+    const facebooksignin = () => {
+        signinWithFacebook()
+        .then(result=>console.log(result.user))
+        .then(error => console.log(error))
+    }
+    const githubsignin = () => {
+        signinWithGithub()
+        .then(result=>console.log(result.user))
+        .then(error => console.log(error))
+    }
     return (
         <div className='flex justify-center flex-col items-center pt-28'>
             <div className='bg-slate-400 rounded-lg p-4 sm:w-full md:w-1/2 lg:w-1/3 drop-shadow-xl '>
@@ -35,9 +54,9 @@ const Signin = () => {
                 </form>
             </div>
             <div className='flex flex-col md:flex-row lg:justify-between gap-4 pt-10'>
-                    <button type='submit' className='flex gap-1 items-center font-bold btn btn-outline'> <AiFillGoogleCircle className='text-red-700'/>Google</button>
-                    <button type='submit' className='flex gap-1 items-center font-bold btn btn-outline'><FaGithub/> Github</button>
-                    <button type='submit' className='flex gap-1 items-center font-bold btn btn-outline'><FaFacebook/>Facebook</button>
+                    <button type='submit' className='flex gap-1 items-center font-bold btn btn-outline' onClick={googlesignin}> <AiFillGoogleCircle className='text-red-700'/>Google</button>
+                    <button type='submit' className='flex gap-1 items-center font-bold btn btn-outline' onClick={githubsignin}><FaGithub/> Github</button>
+                    <button type='submit' className='flex gap-1 items-center font-bold btn btn-outline' onClick={facebooksignin}><FaFacebook/>Facebook</button>
                 </div>
         </div>
     );
