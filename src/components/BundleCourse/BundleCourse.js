@@ -3,7 +3,7 @@ import Topics from '../Topics/Topics';
 const BundleCourse = () => {
     const [topics, setTopics] = useState([])
     useEffect( ()=>{
-        fetch('http://localhost:4000/bundle/')
+        fetch('https://assignment10-server-sable.vercel.app/bundle/')
         .then(response => response.json())
         .then(data => {
             setTopics(data);

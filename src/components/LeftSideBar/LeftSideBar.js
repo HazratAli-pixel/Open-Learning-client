@@ -7,21 +7,21 @@ const LeftSideBar = () => {
     const [courseName, setCourse] = useState([]);
     const [bundlecourseName, setBundleCourse] = useState([]);
     // useEffect(()=>{
-    //     fetch('http://localhost:4000/category')
+    //     fetch('https://assignment10-server-sable.vercel.app//category')
     //     .then(response => response.json())
     //     .then(category => {
     //         setCategory(category);
     //     })
     // },[])
     useEffect(()=>{
-        fetch('http://localhost:4000/course/')
+        fetch('https://assignment10-server-sable.vercel.app/course')
         .then(response => response.json())
         .then(course => {
             setCourse(course);
         })
     },[])
     useEffect(()=>{
-        fetch('http://localhost:4000/bundle/')
+        fetch('https://assignment10-server-sable.vercel.app/bundle')
         .then(response => response.json())
         .then(bundlecourse => {
             setBundleCourse(bundlecourse);

@@ -4,7 +4,7 @@ import SingleCourse from './SingleCourse';
 const CourseCart = () => {
     const [course, setCourse] = useState([])
     useEffect( ()=>{
-        fetch('http://localhost:4000/course/')
+        fetch('https://assignment10-server-sable.vercel.app/course/')
         .then(response => response.json())
         .then(data => {
             setCourse(data);

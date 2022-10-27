@@ -38,27 +38,27 @@ export const Routes = createBrowserRouter([
                 children:[
                     {
                         path:'',
-                        loader: async () => {return fetch('http://localhost:4000/course/')},
+                        loader: async () => {return fetch('https://assignment10-server-sable.vercel.app/course/')},
                         element:<CourseCart></CourseCart>
                     },
                     {
                         path:':id',
                         loader: async ({params}) => {
-                            return fetch(`http://localhost:4000/course/${params.id}`)
+                            return fetch(`https://assignment10-server-sable.vercel.app/course/${params.id}`)
                         },
                         element: <CourseDetails></CourseDetails>
                     },
                     {
                         path:'checkout/:id',
                         loader: async ({params}) => {
-                            return fetch(`http://localhost:4000/course/${params.id}`)
+                            return fetch(`https://assignment10-server-sable.vercel.app/course/${params.id}`)
                         },
                         element: <Privateroute><Checkout></Checkout></Privateroute>
                     },
                     {
                         path:'bundle/:id',
                         loader: async ({params}) => {
-                            return fetch(`http://localhost:4000/bundle/${params.id}`)
+                            return fetch(`https://assignment10-server-sable.vercel.app/bundle/${params.id}`)
                         },
                         element:<BundleDetails></BundleDetails>
                     },
@@ -78,10 +78,10 @@ export const Routes = createBrowserRouter([
                     const id = params.id;
                     
                     if(id.includes("b")){
-                        return fetch(`http://localhost:4000/bundle/${params.id}`)
+                        return fetch(`https://assignment10-server-sable.vercel.app/bundle/${params.id}`)
                     }
                     else{
-                        return fetch(`http://localhost:4000/course/${params.id}`)
+                        return fetch(`https://assignment10-server-sable.vercel.app/course/${params.id}`)
                     }
                 },
                 element:<Privateroute><Checkout></Checkout></Privateroute>
