@@ -9,7 +9,8 @@ const BundleDetails = () => {
 
     return (
         <div className="card card-compact bg-base-100 shadow-xl h-full">
-            <figure className='bg-white p-2'><img className='w-full rounded-xl ' src={imgUrl} alt="Shoes" /></figure>
+            <h1 className='text-3xl text-center p-3'>{title}</h1>
+            <figure className='bg-white p-2'><img className='w-full rounded-xl h-80' src={imgUrl} alt="Shoes" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{title}</h2>
                 <h2 className="">{description}</h2>
@@ -24,7 +25,7 @@ const BundleDetails = () => {
                     </ol>
                 </div>
                 <div className="card-actions justify-end">
-                    <Link to={`bundle/${_id}`} className="btn btn-primary hover:btn-success w-full">Buy this</Link>
+                    <Link to={`../checkout/${_id}`} className="btn btn-primary hover:btn-success w-full">Get Premium Access</Link>
                 </div>
             </div>
         </div>

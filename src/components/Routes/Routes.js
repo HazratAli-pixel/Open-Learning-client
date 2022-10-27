@@ -47,6 +47,20 @@ export const Routes = createBrowserRouter([
                         },
                         element: <CourseDetails></CourseDetails>
                     },
+                    {
+                        path:'checkout/:id',
+                        loader: async ({params}) => {
+                            return fetch(`http://localhost:4000/course/${params.id}`)
+                        },
+                        element: <Privateroute><Checkout></Checkout></Privateroute>
+                    },
+                    {
+                        path:'bundle/:id',
+                        loader: async ({params}) => {
+                            return fetch(`http://localhost:4000/bundle/${params.id}`)
+                        },
+                        element:<BundleDetails></BundleDetails>
+                    },
                 ]
             },
             {
@@ -61,13 +75,7 @@ export const Routes = createBrowserRouter([
                 path:'checkout',
                 element:<Privateroute><Checkout></Checkout></Privateroute>
             },
-            {
-                path:'bundle/:id',
-                loader: async ({params}) => {
-                    return fetch(`http://localhost:4000/bundle/${params.id}`)
-                },
-                element:<BundleDetails></BundleDetails>
-            },           
+                       
             {
                 path:'profile',
                 element: <Privateroute><Profile></Profile></Privateroute>,

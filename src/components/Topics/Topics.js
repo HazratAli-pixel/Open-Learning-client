@@ -21,7 +21,7 @@ const Topics = ({bundleTopics}) => {
             </ol>
           </div>
           <div className="card-actions justify-end">
-            <Link to={`bundle/${_id}`} className="btn btn-primary hover:btn-success w-full">Details</Link>
+            <Link to={`courses/bundle/${_id}`} className="btn btn-primary hover:btn-success w-full">Details</Link>
           </div>
         </div>
       </div>
