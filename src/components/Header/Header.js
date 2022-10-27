@@ -59,23 +59,28 @@ const Header = () => {
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                 </label>
                 <ul tabIndex={0} className="text-right dropdown-content mt-3 p-2 shadow bg-neutral text-neutral-content rounded-box w-32 absolute right-0">
-                  <li><NavLink to='/courses' className={({ isActive }) =>
-                    isActive ? 'bg-green-400 text-black' : undefined}>Courses</NavLink>
+                  <li className='py-1'><NavLink to='/courses' className={({ isActive }) =>
+                    isActive ? 'bg-green-400 text-black p-1 rounded-lg' : 'p-1'}>Courses</NavLink>
                   </li>
-                  <li><NavLink to='/FAQ' className={({ isActive }) =>
-                    isActive ? 'bg-green-400 text-black' : undefined}>FAQ</NavLink>
+                  <li className='py-1'><NavLink to='/FAQ' className={({ isActive }) =>
+                    isActive ? 'bg-green-400 text-black p-1 rounded-lg' : 'p-1'}>FAQ</NavLink>
                   </li>
-                  <li><NavLink to='/blog' className={({ isActive }) =>
-                    isActive ? 'bg-green-400 text-black' : undefined}>Blog</NavLink>
+                  <li className='py-1'><NavLink to='/blog' className={({ isActive }) =>
+                    isActive ? 'bg-green-400 text-black p-1 rounded-lg' : 'p-1'}>Blog</NavLink>
                   </li>
-                  <li><NavLink to='/signin' className={({ isActive }) =>
+                  {
+                    user? <div className='pl-2'>
+                    <Link id='' to='/profile' className='flex justify-end'><img id='' src={user.photoURL} className='border-2 border-green-400 rounded-full hover:' alt="" style={{width: "45px", height:"45px"}} srcset="" /></Link>
+                    <div className='text-white p-2' id=''>
+                      <p >{user.displayName}</p>
+                    </div>
+                  </div> : <li><NavLink to='/signin' className={({ isActive }) =>
                     isActive ? 'bg-green-400 text-black' : undefined}>Login</NavLink>
                   </li>
-                  <div className='pl-2 flex justify-end'>
-                    <img src="oepnlogo.jpg" className='border-2 border-green-400 rounded-full' alt="" style={{width: "50px"}} srcset="" />
-                  </div>
-                <p className='pl-3'><button type='checked' onClick={themechange} className='btn btn-success'> {modeToogle? <MdLightMode/>: <CiDark/>} </button>
+                  }
+                   <p className='pl-1'><button type='checked' onClick={themechange} className='btn btn-success'> {modeToogle? <MdLightMode/>: <CiDark/>} </button>
                   </p>
+                  <p className='flex justify-end'>{user? <button className='p-2 flex items-center' onClick={userlogout}>logout</button>:""}</p>
                 </ul>
               </div>
             </div>
