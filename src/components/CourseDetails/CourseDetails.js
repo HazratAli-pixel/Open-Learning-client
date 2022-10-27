@@ -27,7 +27,7 @@ const CourseDetails = () => {
                     <p className='text-start'><span className='font-extrabold'>Price :</span>  {price} tk</p>
                     <p className='text-start'><span className='font-extrabold'>Enroled Sudents :</span>  {students} </p>
                     <div className="card-actions justify-end">
-                        <Link to={`../checkout/${_id}`} className="btn btn-primary hover:btn-success w-full">Get Premium Access</Link>
+                        <Link to={`../../checkout/${_id}`} className="btn btn-primary hover:btn-success w-full">Get Premium Access</Link>
                     </div>
                     </div>
                 </div>

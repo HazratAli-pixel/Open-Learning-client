@@ -37,7 +37,7 @@ const BundleDetails = () => {
                     </ol>
                 </div>
                 <div className="card-actions justify-end">
-                    <Link to={`../checkout/${_id}`} className="btn btn-primary hover:btn-success w-full">Get Premium Access</Link>
+                    <Link to={`../../checkout/${_id}`} className="btn btn-primary hover:btn-success w-full">Get Premium Access</Link>
                 </div>
             </div>
             </div>

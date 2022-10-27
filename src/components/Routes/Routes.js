@@ -5,6 +5,7 @@ import Course from "../Course/Course";
 import CourseCart from "../CourseDetails/CourseCart";
 import CourseDetails from "../CourseDetails/CourseDetails";
 import ErrorPage from "../ErrorPage/ErrorPage";
+import Freeq from "../Freeq/Freeq";
 import Home from "../Home/Home";
 import Main from "../Layout/Main";
 import Profile from "../Profile/Profile";
@@ -65,14 +66,24 @@ export const Routes = createBrowserRouter([
             },
             {
                 path:'faq',
-                element:<div>faq</div>
+                element:<Freeq></Freeq>
             },
             {
                 path:'blog',
                 element:<Blog></Blog>
             },
             {
-                path:'checkout',
+                path:'checkout/:id',
+                loader: async ({params}) =>{
+                    const id = params.id;
+                    
+                    if(id.includes("b")){
+                        return fetch(`http://localhost:4000/bundle/${params.id}`)
+                    }
+                    else{
+                        return fetch(`http://localhost:4000/course/${params.id}`)
+                    }
+                },
                 element:<Privateroute><Checkout></Checkout></Privateroute>
             },
                        
