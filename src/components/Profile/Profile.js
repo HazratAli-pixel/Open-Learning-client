@@ -1,14 +1,16 @@
 
 import React, { useContext } from 'react';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../UserContext/UserContext';
 
 
-
 const Profile = () => {
-    const {user, emailveryfy} = useContext(AuthContext)
+    const {user, emailverify} = useContext(AuthContext)
     const emailvery = ()=>{
-        emailveryfy()
-        .then(result => console.log(result))
+        emailverify()
+        .then(result =>{
+            toast("Verification Email send. Check your inbox / spam folder");
+            console.log(result)})
     }
     return (
         <div className='p-1'>

@@ -1,13 +1,15 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../UserContext/UserContext';
-
 const RightSideBar = () => {
     const navigate = useNavigate();
-    const {user, emailveryfy, logout} = useContext(AuthContext)
+    const {user, emailverify, logout} = useContext(AuthContext)
     const emailvery = ()=>{
-        emailveryfy()
-        .then(result => console.log(result))
+        emailverify()
+        .then(result => {
+            toast("Verification Email send. Check your inbox / spam folder");
+            console.log(result)})
     }
     const userlogout = ()=>{
         logout();

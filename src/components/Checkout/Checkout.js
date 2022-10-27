@@ -1,14 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { FaFileDownload } from 'react-icons/fa';
 import { useLoaderData } from 'react-router-dom';
 import Pdf from "react-to-pdf";
 import RightSideBar from '../RightSideBar/RightSideBar';
-import { AuthContext } from '../UserContext/UserContext';
 
 const ref = React.createRef();
 
 const Checkout = () => {
-    const {user} = useContext(AuthContext)
     const data = useLoaderData()
     console.log(data);
     return (
@@ -20,22 +18,19 @@ const Checkout = () => {
                     <h1 className='text-3xl text-center'>{data.title}
                    </h1>
                         <div className="card card-compact bg-base-100 shadow-xl h-full" ref={ref}>
-                            <div className='invisible'>
-                                <h1>{user.displayName} test</h1>
-                            </div>
+                            
                             <figure className='bg-white p-2'><img className='w-full rounded-xl h-80' src={data.imgUrl} alt="Shoes" /></figure>
                             <div className="card-body">
                             <h2 className="card-title">{data.title}</h2>
                             <h2 className="">{data?.description}</h2>
                             <p className='text-start'><span className='font-extrabold'>Dureation :</span>  {data.duration} min</p>
                             <p className='text-start'><span className='font-extrabold'>Price :</span>  {data.price} tk</p>
-                            <p className='text-start'><span className='font-extrabold'>Enroled Sudents :</span>  {data.students} </p>
                             </div>
                         </div>
                     </div>
-                    <div className='flex justify-end'>
+                    <div className='flex justify-center'>
                         <Pdf targetRef={ref} filename={data.title}>
-                            {({ toPdf }) => <button className='pl-2 btn btn-primary' onClick={toPdf}><FaFileDownload/>Download and Print</button>}
+                            {({ toPdf }) => <button className='pl-2 btn btn-primary' onClick={toPdf}><FaFileDownload className=''/> Download and Print</button>}
                         </Pdf>
                     </div>
                 </div>

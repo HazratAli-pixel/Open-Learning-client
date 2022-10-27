@@ -50,7 +50,7 @@ const UserContext = ({children}) => {
         updateProfile(auth.currentUser, info)
     }
 
-    const emailveryfy = () =>{
+    const emailverify = () =>{
         return sendEmailVerification(auth.currentUser);
     }
 
@@ -81,7 +81,7 @@ const UserContext = ({children}) => {
 
     },[])
     // const authInfo = {user, loading, createUser, signIn, logout, signinWithGoogle}
-    const authInfo = {user, loading, createUser,emailveryfy, signIn, logout, signinWithGoogle,signinWithGithub,signinWithFacebook, updateProfileInfo, modechange, modeToogle}
+    const authInfo = {user, loading, createUser,emailverify, signIn, logout, signinWithGoogle,signinWithGithub,signinWithFacebook, updateProfileInfo, modechange, modeToogle}
 
     return (
         <AuthContext.Provider value={authInfo} >
