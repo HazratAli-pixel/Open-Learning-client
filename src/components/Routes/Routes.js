@@ -2,10 +2,11 @@ import { createBrowserRouter } from "react-router-dom";
 import Blog from "../Blog/Blog";
 import Checkout from "../Checkout/Checkout";
 import Course from "../Course/Course";
+import CourseCart from "../CourseDetails/CourseCart";
+import CourseDetails from "../CourseDetails/CourseDetails";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import Home from "../Home/Home";
 import Main from "../Layout/Main";
-import Modal from "../Modal/Modal";
 import Profile from "../Profile/Profile";
 import Privateroute from "../Routes/Privateroute";
 import Signin from "../Signin/Signin";
@@ -31,13 +32,22 @@ export const Routes = createBrowserRouter([
                 element:<Signin></Signin>
             },
             {
-                path:'modal',
-                element:<Modal></Modal>
-            },
-            {
                 path:'courses',
-                loader: async () => {return fetch('http://localhost:4000/course/')},
-                element:<Course></Course>
+                element:<Course></Course>,
+                children:[
+                    {
+                        path:'',
+                        loader: async () => {return fetch('http://localhost:4000/course/')},
+                        element:<CourseCart></CourseCart>
+                    },
+                    {
+                        path:':id',
+                        loader: async ({params}) => {
+                            return fetch(`http://localhost:4000/course/${params.id}`)
+                        },
+                        element: <CourseDetails></CourseDetails>
+                    },
+                ]
             },
             {
                 path:'faq',
@@ -56,8 +66,8 @@ export const Routes = createBrowserRouter([
                 loader: async ({params}) => {
                     return fetch(`http://localhost:4000/bundle/${params.id}`)
                 },
-                element:<Privateroute><BundleDetails></BundleDetails></Privateroute>
-            },            
+                element:<BundleDetails></BundleDetails>
+            },           
             {
                 path:'profile',
                 element: <Privateroute><Profile></Profile></Privateroute>,
