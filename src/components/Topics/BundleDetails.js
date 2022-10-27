@@ -8,7 +8,6 @@ const BundleDetails = () => {
     const {imgUrl,students, _id, title,description, content, duration, price} = loaderData
 
     return (
-
         <div className="card card-compact bg-base-100 shadow-xl h-full">
             <figure className='bg-white p-2'><img className='w-full rounded-xl ' src={imgUrl} alt="Shoes" /></figure>
             <div className="card-body">
