@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { AiOutlineLogout } from 'react-icons/ai';
 import { CiDark } from 'react-icons/ci';
 import { MdLightMode } from 'react-icons/md';
-import { Link, NavLink,useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../UserContext/UserContext';
 import './Header.css';
 
@@ -22,7 +22,7 @@ const Header = () => {
           <div className="container mx-auto navbar bg-neutral text-neutral-content">
             <div className="navbar-start">
               <Link to='/' className="btn btn-ghost normal-case text-xl"> 
-                <img src="oepnlogo.jpg" alt="" style={{width: '50px'}} className="mr-2 border-4 rounded-full" />Open Learning
+                <img src="/oepnlogo.jpg" alt="" style={{width: '50px'}} className="mr-2 border-4 rounded-full" />Open Learning
               </Link>
             </div>
             <div className='navbar-end'>

@@ -1,9 +1,12 @@
 import React from 'react';
+import BundleCourse from '../BundleCourse/BundleCourse';
+import Slider from '../Slider/Slider';
 
 const Home = () => {
     return (
         <div>
-            <h1>this is home page</h1>
+            <Slider></Slider>
+            <BundleCourse></BundleCourse>
         </div>
     );
 };
