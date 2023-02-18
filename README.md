@@ -1,4 +1,4 @@
-# Project name : Skill Tester
+# Project name : Open learning
 
 [open_learning](https://open-learning-6d337.web.app/ "open Learning")
 [Vercel_link](https://assignment10-server-sable.vercel.app/ "Vercel link")
